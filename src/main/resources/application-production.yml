@@ -1,0 +1,3 @@
+message:
+  hello: "Hello from application-production.yml"
+  goodbye: "Goodbye from application-production.yml"
