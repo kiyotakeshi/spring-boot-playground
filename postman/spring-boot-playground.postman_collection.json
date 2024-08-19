@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "f7b576d0-76d9-41e1-aba7-2c6fc4255ece",
+		"name": "spring-boot-playground",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8890557"
+	},
+	"item": [
+		{
+			"name": "localhost:{port}/hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/hello",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:{port}/logging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/logging",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"logging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:{port}/inner/logging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/inner/logging",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"inner",
+						"logging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:{port}/inner/logging/exception",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/inner/logging/exception",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"inner",
+						"logging",
+						"exception"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "28080",
+			"type": "string"
+		}
+	]
+}

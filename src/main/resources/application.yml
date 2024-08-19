@@ -2,7 +2,8 @@ server:
   port: 28080
 
 # https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.log-levels
-logging.level.kiyotakeshi.com.example.playground.profile: debug
-logging.level.kiyotakeshi.com.example.playground.log: trace
+#logging.level.kiyotakeshi.com.example.playground.profile: debug
+#logging.level.kiyotakeshi.com.example.playground.log: debug
+#logging.level.kiyotakeshi.com.example.playground.log.inner: trace
 # https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.log-groups
 #logging.level.web: debug
