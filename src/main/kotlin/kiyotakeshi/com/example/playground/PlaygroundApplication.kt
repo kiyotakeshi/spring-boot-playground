@@ -1,11 +1,11 @@
-package kiyotakeshi.com.example.demo_profile
+package kiyotakeshi.com.example.playground
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DemoProfileApplication
+class PlaygroundApplication
 
 fun main(args: Array<String>) {
-	runApplication<DemoProfileApplication>(*args)
+	runApplication<PlaygroundApplication>(*args)
 }

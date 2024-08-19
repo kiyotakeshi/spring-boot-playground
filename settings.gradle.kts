@@ -1,1 +1,1 @@
-rootProject.name = "demo-profile"
+rootProject.name = "spring-boot-playground"
