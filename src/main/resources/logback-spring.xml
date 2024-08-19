@@ -4,7 +4,7 @@
     <property name="LOG_DIR" value="."/>
     <!-- export LOG_DIR=./src/main/resources -->
     <!-- <property name="LOG_DIR" value="./src/main/resources" /> -->
-    <timestamp key="time" datePattern="yyyyMMdd_HHmmss" />
+    <timestamp key="time" datePattern="yyyyMMdd_HHmmss"/>
 
     <!-- appender -->
     <!-- RollingFileAppender などいろんな appender がある -->
@@ -24,8 +24,47 @@
             <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
+    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+            <providers>
+                <timestamp>
+                    <fieldName>ts</fieldName>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+                <logLevel>
+                    <fieldName>level</fieldName>
+                </logLevel>
+                <callerData>
+                    <classFieldName>class</classFieldName>
+                    <methodFieldName>method</methodFieldName>
+                    <lineFieldName>line</lineFieldName>
+                    <fileFieldName>file</fileFieldName>
+                </callerData>
+                <threadName>
+                    <fieldName>thread</fieldName>
+                </threadName>
+                <mdc />
+                <arguments>
+                    <includeNonStructuredArguments>false</includeNonStructuredArguments>
+                </arguments>
+                <stackTrace>
+                    <fieldName>stack</fieldName>
+                </stackTrace>
+                <message>
+                    <fieldName>msg</fieldName>
+                </message>
+            </providers>
+        </encoder>
+    </appender>
 
     <springProfile name="default,test">
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+        </root>
         <!-- logger -->
         <logger name="kiyotakeshi.com.example.playground.log" level="debug" additivity="false">
             <appender-ref ref="FILE"/>
@@ -35,10 +74,9 @@
             <appender-ref ref="FILE"/>
             <appender-ref ref="STDOUT"/>
         </logger>
-
-        <root level="info">
-            <appender-ref ref="STDOUT"/>
-        </root>
+        <logger name="kiyotakeshi.com.example.playground.log.json" level="trace" additivity="false">
+            <appender-ref ref="JSON"/>
+        </logger>
     </springProfile>
 
     <!-- export SPRING_PROFILES_ACTIVE=production -->

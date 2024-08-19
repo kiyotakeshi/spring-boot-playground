@@ -7,6 +7,145 @@
 	},
 	"item": [
 		{
+			"name": "actuator",
+			"item": [
+				{
+					"name": "localhost:{port}/actuator/health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/actuator/health",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/actuator/env",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/actuator/env",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actuator",
+								"env"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/actuator/metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/actuator/metrics",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actuator",
+								"metrics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/actuator/info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/actuator/info",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/actuator/beans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/actuator/beans",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actuator",
+								"beans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/actuator/loggers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/actuator/loggers",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actuator",
+								"loggers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/actuator/loggers single",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/actuator/loggers/kiyotakeshi.com.example.playground.log",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actuator",
+								"loggers",
+								"kiyotakeshi.com.example.playground.log"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "localhost:{port}/hello",
 			"request": {
 				"method": "GET",
@@ -37,6 +176,45 @@
 					"port": "{{port}}",
 					"path": [
 						"logging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:{port}/json/logging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/json/logging",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"json",
+						"logging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:{port}/json/logging/exception",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/json/logging/exception",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"json",
+						"logging",
+						"exception"
 					]
 				}
 			},
