@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- property -->
-    <property name="LOG_DIR" value="."/>
-    <!-- export LOG_DIR=./src/main/resources -->
-    <!-- <property name="LOG_DIR" value="./src/main/resources" /> -->
     <springProperty name="APPLICATION" source="spring.application.name"/>
-    <timestamp key="time" datePattern="yyyyMMdd_HHmmss"/>
 
     <!-- appender -->
-    <!-- RollingFileAppender などいろんな appender がある -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <target>System.out</target>
         <!-- layout と呼ばれる設定項目 -->
@@ -22,57 +17,7 @@
         <target>System.out</target>
         <encoder>
             <charset>UTF-8</charset>
-            <!-- <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{100} [%X{action}] - %msg%n</pattern>　-->
-            <!-- <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{100} - [%X{requestURI}] [%X{uniqueTrackingNumber}] [%X{action}] - %msg%n</pattern> -->
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %mdc - %msg%n</pattern>
-        </encoder>
-    </appender>
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${LOG_DIR}/tests_${time}.log</file>
-        <encoder>
-            <charset>UTF-8</charset>
-            <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-    <appender name="GeneralJSON" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- https://github.com/logfellow/logstash-logback-encoder?tab=readme-ov-file#composite-encoderlayout -->
-        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
-            <providers>
-                <mdc/>
-                <timestamp>
-                    <fieldName>ts</fieldName>
-                    <timeZone>UTC</timeZone>
-                </timestamp>
-                <loggerName>
-                    <fieldName>logger</fieldName>
-                </loggerName>
-                <logLevel>
-                    <fieldName>level</fieldName>
-                </logLevel>
-                <callerData>
-                    <classFieldName>class</classFieldName>
-                    <methodFieldName>method</methodFieldName>
-                    <lineFieldName>line</lineFieldName>
-                    <fileFieldName>file</fileFieldName>
-                </callerData>
-                <threadName>
-                    <fieldName>thread</fieldName>
-                </threadName>
-                <stackTrace>
-                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
-                        <maxDepthPerThrowable>30</maxDepthPerThrowable>
-                        <maxLength>2048</maxLength>
-                        <shortenedClassNameLength>20</shortenedClassNameLength>
-                        <exclude>^sun\.reflect\..*\.invoke</exclude>
-                        <exclude>^net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
-                        <rootCauseFirst>true</rootCauseFirst>
-                    </throwableConverter>
-                </stackTrace>
-                <message>
-                    <fieldName>msg</fieldName>
-                </message>
-            </providers>
         </encoder>
     </appender>
     <appender name="LogstashJSON" class="ch.qos.logback.core.ConsoleAppender">
@@ -100,11 +45,9 @@
         </root>
         <!-- logger -->
         <logger name="kiyotakeshi.com.example.playground.log" level="debug" additivity="false">
-            <appender-ref ref="FILE"/>
             <appender-ref ref="STDOUT"/>
         </logger>
         <logger name="kiyotakeshi.com.example.playground.log.inner" level="trace" additivity="false">
-            <appender-ref ref="FILE"/>
             <appender-ref ref="STDOUT"/>
         </logger>
         <logger name="kiyotakeshi.com.example.playground.log.json" level="trace" additivity="false">
@@ -113,12 +56,5 @@
         <logger name="kiyotakeshi.com.example.playground.log.mdc" level="info" additivity="false">
             <appender-ref ref="STDOUT_WITH_MDC"/>
         </logger>
-    </springProfile>
-
-    <!-- export SPRING_PROFILES_ACTIVE=production -->
-    <springProfile name="production">
-        <root level="info">
-            <appender-ref ref="STDOUT"/>
-        </root>
     </springProfile>
 </configuration>
