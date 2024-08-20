@@ -4,6 +4,7 @@
     <property name="LOG_DIR" value="."/>
     <!-- export LOG_DIR=./src/main/resources -->
     <!-- <property name="LOG_DIR" value="./src/main/resources" /> -->
+    <springProperty name="APPLICATION" source="spring.application.name"/>
     <timestamp key="time" datePattern="yyyyMMdd_HHmmss"/>
 
     <!-- appender -->
@@ -33,11 +34,12 @@
             <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- TODO: LogstashEncoder を使用する -->
+    <appender name="GeneralJSON" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- https://github.com/logfellow/logstash-logback-encoder?tab=readme-ov-file#composite-encoderlayout -->
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
             <providers>
+                <mdc/>
                 <timestamp>
                     <fieldName>ts</fieldName>
                     <timeZone>UTC</timeZone>
@@ -57,12 +59,15 @@
                 <threadName>
                     <fieldName>thread</fieldName>
                 </threadName>
-                <mdc/>
-                <arguments>
-                    <includeNonStructuredArguments>false</includeNonStructuredArguments>
-                </arguments>
                 <stackTrace>
-                    <fieldName>stack</fieldName>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                        <maxLength>2048</maxLength>
+                        <shortenedClassNameLength>20</shortenedClassNameLength>
+                        <exclude>^sun\.reflect\..*\.invoke</exclude>
+                        <exclude>^net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+                        <rootCauseFirst>true</rootCauseFirst>
+                    </throwableConverter>
                 </stackTrace>
                 <message>
                     <fieldName>msg</fieldName>
@@ -70,7 +75,25 @@
             </providers>
         </encoder>
     </appender>
-
+    <appender name="LogstashJSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+            <includeCallerData>true</includeCallerData>
+            <timeZone>JST</timeZone>
+            <timestampPattern>yyyy-MM-dd'T'HH:mm:ss.SSS</timestampPattern>
+            <!-- https://github.com/logfellow/logstash-logback-encoder?tab=readme-ov-file#customizing-standard-field-names -->
+            <fieldNames>
+                <mdc/>
+                <version>version</version>
+                <timestamp>timestamp</timestamp>
+            </fieldNames>
+            <customFields>
+                {
+                "application": "${APPLICATION}"
+                }
+            </customFields>
+        </encoder>
+    </appender>
     <springProfile name="default,test">
         <root level="info">
             <appender-ref ref="STDOUT"/>
@@ -85,7 +108,7 @@
             <appender-ref ref="STDOUT"/>
         </logger>
         <logger name="kiyotakeshi.com.example.playground.log.json" level="trace" additivity="false">
-            <appender-ref ref="JSON"/>
+            <appender-ref ref="LogstashJSON"/>
         </logger>
         <logger name="kiyotakeshi.com.example.playground.log.mdc" level="info" additivity="false">
             <appender-ref ref="STDOUT_WITH_MDC"/>

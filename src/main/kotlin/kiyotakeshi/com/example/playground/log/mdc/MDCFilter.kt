@@ -21,7 +21,7 @@ class MDCFilter : OncePerRequestFilter() {
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        MDC.put("requestURI", "request: ${request.requestURI}")
+        MDC.put("requestURI", request.requestURI)
         // TODO: presumably this is extracted from the request (or defaulted, if not supplied)
         MDC.put("uniqueTrackingNumber", request.requestId)
         try {
