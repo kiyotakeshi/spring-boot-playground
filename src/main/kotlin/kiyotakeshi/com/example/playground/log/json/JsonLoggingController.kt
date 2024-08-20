@@ -13,10 +13,10 @@ class JsonLoggingController {
 
     @GetMapping
     fun index(): String {
-        logger.trace("a inner trace message")
-        logger.debug("a inner debug message")
+        logger.trace("a json trace message")
+        logger.debug("a json debug message")
 
-        return "check out the inner logs to see the output..."
+        return "check out the json logs to see the output..."
     }
 
     @GetMapping("/exception")

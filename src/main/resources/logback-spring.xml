@@ -17,6 +17,15 @@
             <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{100} - %msg%n</pattern>
         </encoder>
     </appender>
+    <appender name="STDOUT_WITH_MDC" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <charset>UTF-8</charset>
+            <!-- <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{100} [%X{action}] - %msg%n</pattern>　-->
+            <!-- <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{100} - [%X{requestURI}] [%X{uniqueTrackingNumber}] [%X{action}] - %msg%n</pattern> -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %mdc - %msg%n</pattern>
+        </encoder>
+    </appender>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${LOG_DIR}/tests_${time}.log</file>
         <encoder>
@@ -25,6 +34,7 @@
         </encoder>
     </appender>
     <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- TODO: LogstashEncoder を使用する -->
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
             <providers>
@@ -47,7 +57,7 @@
                 <threadName>
                     <fieldName>thread</fieldName>
                 </threadName>
-                <mdc />
+                <mdc/>
                 <arguments>
                     <includeNonStructuredArguments>false</includeNonStructuredArguments>
                 </arguments>
@@ -76,6 +86,9 @@
         </logger>
         <logger name="kiyotakeshi.com.example.playground.log.json" level="trace" additivity="false">
             <appender-ref ref="JSON"/>
+        </logger>
+        <logger name="kiyotakeshi.com.example.playground.log.mdc" level="info" additivity="false">
+            <appender-ref ref="STDOUT_WITH_MDC"/>
         </logger>
     </springProfile>
 
