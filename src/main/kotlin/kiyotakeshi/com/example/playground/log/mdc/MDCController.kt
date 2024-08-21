@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/mdc/logging")
 class MDCController {
 
-    var logger = LoggerFactory.getLogger(MDCController::class.java)
+    var logger = LoggerFactory.getLogger(javaClass)
 
     private fun doSomething() {
         // thread local な値として指定しているので MDC.put で設定した値は適用され続ける

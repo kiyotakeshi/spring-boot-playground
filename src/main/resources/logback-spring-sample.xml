@@ -34,7 +34,7 @@
             <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    <appender name="GeneralJSON" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="GENERAL_JSON" class="ch.qos.logback.core.ConsoleAppender">
         <!-- https://github.com/logfellow/logstash-logback-encoder?tab=readme-ov-file#composite-encoderlayout -->
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
@@ -75,7 +75,7 @@
             </providers>
         </encoder>
     </appender>
-    <appender name="LogstashJSON" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="LOGSTASH_JSON" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
             <includeCallerData>true</includeCallerData>
@@ -108,7 +108,7 @@
             <appender-ref ref="STDOUT"/>
         </logger>
         <logger name="kiyotakeshi.com.example.playground.log.json" level="trace" additivity="false">
-            <appender-ref ref="LogstashJSON"/>
+            <appender-ref ref="LOGSTASH_JSON"/>
         </logger>
         <logger name="kiyotakeshi.com.example.playground.log.mdc" level="info" additivity="false">
             <appender-ref ref="STDOUT_WITH_MDC"/>

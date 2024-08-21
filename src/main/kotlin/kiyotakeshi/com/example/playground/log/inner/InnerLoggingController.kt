@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/inner/logging")
 class InnerLoggingController {
 
-    var logger = LoggerFactory.getLogger(InnerLoggingController::class.java)
+    var logger = LoggerFactory.getLogger(javaClass)
 
     @GetMapping
     fun index(): String {

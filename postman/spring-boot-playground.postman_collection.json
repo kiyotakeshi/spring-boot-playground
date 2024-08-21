@@ -185,7 +185,19 @@
 			"name": "localhost:{port}/json/logging",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-Custom-Id",
+						"value": "{{$randomUUID}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "localhost:{{port}}/json/logging",
 					"host": [
@@ -254,6 +266,25 @@
 						"inner",
 						"logging",
 						"exception"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:{port}/mdc/logging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/mdc/logging",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"mdc",
+						"logging"
 					]
 				}
 			},

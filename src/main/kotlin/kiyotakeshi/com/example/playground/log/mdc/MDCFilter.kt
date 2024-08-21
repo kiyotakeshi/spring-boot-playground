@@ -7,11 +7,11 @@ import jakarta.servlet.http.HttpServletResponse
 import org.slf4j.MDC
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
+import org.springframework.web.util.ContentCachingResponseWrapper
 import java.io.IOException
+import java.util.*
 
 
-// TODO: MDCInsertingServletFilter を継承するでもいけそう
-// https://logback.qos.ch/manual/mdc.html#mis
 @Component
 class MDCFilter : OncePerRequestFilter() {
 
@@ -21,9 +21,24 @@ class MDCFilter : OncePerRequestFilter() {
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
+        val customId = "X-Custom-Id"
+        val uniqueId = UUID.randomUUID()
+        val customIdValue = request.getHeader(customId)?.lowercase()
+        logger.info("Request IP address is ${request.remoteAddr}")
+        logger.info("Request content type is ${request.contentType}")
+
+        val responseWrapper = ContentCachingResponseWrapper(
+            response
+        )
+        filterChain.doFilter(request, responseWrapper)
+        responseWrapper.setHeader("requestId", uniqueId.toString())
+        responseWrapper.setHeader(customId, customIdValue ?: "")
+        responseWrapper.copyBodyToResponse()
+
+        logger.info("Response header is set with uuid ${responseWrapper.getHeader("requestId")}")
+        MDC.put(customId, customIdValue);
         MDC.put("requestURI", request.requestURI)
-        // TODO: presumably this is extracted from the request (or defaulted, if not supplied)
-        MDC.put("uniqueTrackingNumber", request.requestId)
+        MDC.put("uniqueTrackingNumber", uniqueId.toString())
         try {
             filterChain.doFilter(request, response)
         } finally {

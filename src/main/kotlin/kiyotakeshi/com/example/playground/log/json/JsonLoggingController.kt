@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/json/logging")
 class JsonLoggingController {
 
-    var logger = LoggerFactory.getLogger(JsonLoggingController::class.java)
+    var logger = LoggerFactory.getLogger(javaClass)
 
     @GetMapping
     fun index(): String {
