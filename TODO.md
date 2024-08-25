@@ -17,6 +17,10 @@
     - https://docs.spring.io/spring-framework/reference/core/aop.html
     - https://spring.pleiades.io/spring-framework/reference/core/aop.html
 
+- [x] README の整理
+
+- [ ] detekt の導入
+
 - [ ] CGLib proxy について試してみる
   - https://www.baeldung.com/cglib
   - https://github.com/eugenp/tutorials/tree/master/libraries/src/test/java/com/baeldung/cglib/proxy
