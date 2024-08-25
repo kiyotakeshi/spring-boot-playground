@@ -19,7 +19,7 @@
 
 - [x] README の整理
 
-- [ ] detekt の導入
+- [x] detekt の導入
 
 - [ ] CGLib proxy について試してみる
   - https://www.baeldung.com/cglib

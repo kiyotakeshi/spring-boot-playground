@@ -1,5 +1,10 @@
 # spring-boot-playground
 
+## require
+
+- [mise](https://mise.jdx.dev/getting-started.html)
+    - install JDK defined in [.mise.toml](./.mise.toml)
+
 ## [TODO](./TODO.md)
 
 ---
