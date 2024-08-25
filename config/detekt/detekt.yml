@@ -1,0 +1,41 @@
+# detekt config に対して上書きしたいものだけ記載する
+# https://github.com/detekt/detekt/blob/main/detekt-core/src/main/resources/default-detekt-config.yml
+
+# https://detekt.dev/docs/introduction/configurations/#output-reports
+output-reports:
+  active: true
+  exclude:
+    - 'HtmlOutputReport'
+    - 'TxtOutputReport'
+    - 'XmlOutputReport'
+    - 'SarifOutputReport'
+
+style:
+  # https://detekt.dev/docs/rules/style/#wildcardimport
+  WildcardImport:
+    active: true
+    excludes: [ '**/test/**' ]
+    excludeImports:
+      - 'java.util.*'
+  # https://detekt.dev/docs/rules/style/#classordering
+  ClassOrdering:
+    active: true
+  # https://detekt.dev/docs/rules/style/#bracesonifstatements
+  BracesOnIfStatements:
+    active: true
+    singleLine: 'never'
+    multiLine: 'always'
+  # https://detekt.dev/docs/rules/style/#mandatorybracesloops
+  MandatoryBracesLoops:
+    active: true
+  # https://detekt.dev/docs/rules/style/#maxlinelength
+  MaxLineLength:
+    active: false
+
+exceptions:
+  # https://detekt.dev/docs/rules/exceptions/#toogenericexceptioncaught
+  TooGenericExceptionCaught:
+    active: false
+  # https://detekt.dev/docs/rules/exceptions/#toogenericexceptionthrown
+  TooGenericExceptionThrown:
+    active: false

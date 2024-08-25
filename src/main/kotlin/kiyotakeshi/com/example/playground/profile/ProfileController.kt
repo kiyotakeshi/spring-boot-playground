@@ -18,10 +18,6 @@ class ProfileController {
     @Value("\${server.port}")
     private val port: String? = null
 
-    companion object {
-        private val logger = getLogger(ProfileController::class.java)
-    }
-
     @GetMapping("/hello")
     fun hello(): String? {
         logger.debug("debug log from {}", this.javaClass.simpleName)
@@ -37,5 +33,9 @@ class ProfileController {
     @GetMapping("/port")
     fun port(): String? {
         return port
+    }
+
+    companion object {
+        private val logger = getLogger(ProfileController::class.java)
     }
 }

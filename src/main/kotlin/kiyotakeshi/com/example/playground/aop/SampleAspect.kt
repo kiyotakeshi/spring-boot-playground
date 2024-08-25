@@ -1,22 +1,24 @@
+@file:Suppress("EmptyFunctionBlock")
+
 package kiyotakeshi.com.example.playground.aop
 
 // 間違えた package を import しないように注意
 // import org.aopalliance.intercept.Joinpoint
 
+import kiyotakeshi.com.example.playground.log.LoggerAsExtensionOnMarkerInterface.Companion.logger
 import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.ProceedingJoinPoint
-import org.aspectj.lang.annotation.*
+import org.aspectj.lang.annotation.AfterReturning
+import org.aspectj.lang.annotation.Around
+import org.aspectj.lang.annotation.Aspect
+import org.aspectj.lang.annotation.Before
+import org.aspectj.lang.annotation.Pointcut
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-
 
 @Aspect
 @Component
 class SampleAspect {
-
-    companion object {
-        var logger = LoggerFactory.getLogger(javaClass)
-    }
 
     @Pointcut("within(@org.springframework.stereotype.Service *)")
     fun service() {
@@ -42,16 +44,20 @@ class SampleAspect {
 
     @AfterReturning(pointcut = "aopPackage()", returning = "result")
     fun logAfter(joinPoint: JoinPoint, result: Any?) {
-        logger.info("logAfter << {$joinPoint.signature.name}() - ${result}")
+        logger.info("logAfter << {$joinPoint.signature.name}() - $result")
     }
 
     @Around(value = "aopPackage()")
     @Throws(Throwable::class)
     fun logAround(joinPoint: ProceedingJoinPoint): Any {
         val methodName = joinPoint.signature.name
-        logger.info("logAround >> ${methodName}() - ${joinPoint.args.contentToString()}")
+        logger.info("logAround >> $methodName() - ${joinPoint.args.contentToString()}")
         val result = joinPoint.proceed()
-        logger.info("logAround << ${methodName}() - ${result}")
+        logger.info("logAround << $methodName() - $result")
         return result
+    }
+
+    companion object {
+        var logger = LoggerFactory.getLogger(javaClass)
     }
 }

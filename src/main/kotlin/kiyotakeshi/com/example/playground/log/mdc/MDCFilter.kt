@@ -11,7 +11,6 @@ import org.springframework.web.util.ContentCachingResponseWrapper
 import java.io.IOException
 import java.util.*
 
-
 @Component
 class MDCFilter : OncePerRequestFilter() {
 
@@ -36,7 +35,7 @@ class MDCFilter : OncePerRequestFilter() {
         responseWrapper.copyBodyToResponse()
 
         logger.info("Response header is set with uuid ${responseWrapper.getHeader("requestId")}")
-        MDC.put(customId, customIdValue);
+        MDC.put(customId, customIdValue)
         MDC.put("requestURI", request.requestURI)
         MDC.put("uniqueTrackingNumber", uniqueId.toString())
         try {

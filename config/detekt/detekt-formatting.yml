@@ -1,0 +1,12 @@
+# detekt config に対して上書きしたいものだけ記載する
+# https://github.com/detekt/detekt/blob/main/detekt-formatting/src/main/resources/config/config.yml
+
+# https://detekt.dev/docs/rules/formatting/
+formatting:
+  # https://detekt.dev/docs/rules/formatting/#argumentlistwrapping
+  ArgumentListWrapping:
+    maxLineLength: 200
+  # https://detekt.dev/docs/rules/formatting/#maximumlinelength
+  MaximumLineLength:
+    active: false
+

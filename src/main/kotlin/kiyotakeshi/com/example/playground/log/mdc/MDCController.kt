@@ -50,8 +50,8 @@ class MDCController {
     fun exception(): String {
         try {
             throw RuntimeException("this is sample runtime exception")
-        } catch (e: Exception) {
-            logger.error("an exception message", e)
+        } catch (expected: Exception) {
+            logger.error("an exception message", expected)
         }
 
         return "check out the inner logs to see the output..."

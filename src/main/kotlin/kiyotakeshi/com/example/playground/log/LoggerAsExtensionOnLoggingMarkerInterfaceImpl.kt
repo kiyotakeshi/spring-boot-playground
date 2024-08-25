@@ -9,17 +9,15 @@ interface Logging
 // avoid pollution of the Any Type
 fun <T : Logging> T.logger(): Logger =
     LoggerFactory.getLogger(getClassForLogging(javaClass).name + " Logging/interface")
-    // LoggerFactory.getLogger(getClassForLogging(T::class.java).name + " Logging/interface")
-
+// LoggerFactory.getLogger(getClassForLogging(T::class.java).name + " Logging/interface")
 
 open class LoggerAsExtensionOnMarkerInterface : Logging {
-    companion object : Logging {
-        val logger = logger()
-    }
-
     fun log(s: String) {
         logger().info(s)
         logger.info(s)
+    }
+    companion object : Logging {
+        val logger = logger()
     }
 }
 
@@ -37,4 +35,3 @@ fun main() {
     // 00:25:06.687 [main] INFO java.lang.String -- Any type pollution
     "foo".logger().info("Any type pollution")
 }
-

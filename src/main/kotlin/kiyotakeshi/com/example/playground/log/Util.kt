@@ -27,7 +27,6 @@ fun main() {
     // Regular class: java.lang.String
     println("Regular class: ${regularClass.name}")
 
-
     // javaClass.enclosingClass が null なので、そのまま引数の javaClass が返される
     val classWithCompanion = getClassForLogging(LoggerInCompanionObject::class.java)
     // Class with companion object: kiyotakeshi.com.example.playground.log.LoggerInCompanionObject

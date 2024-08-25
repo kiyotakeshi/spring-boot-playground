@@ -1,10 +1,5 @@
 package kiyotakeshi.com.example.playground.log
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-import kotlin.reflect.full.companionObject
-
-
 open class LoggerAsExtensionOnAny {
     val logger = logger()
 
@@ -28,4 +23,3 @@ fun main() {
     // 23:29:33.734 [main] INFO java.lang.String -- Any type pollution
     "foo".logger().info("Any type pollution")
 }
-

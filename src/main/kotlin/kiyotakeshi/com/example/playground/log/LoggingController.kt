@@ -35,5 +35,4 @@ class LoggingController {
 
         return "check out the logs to see the output..."
     }
-
 }
