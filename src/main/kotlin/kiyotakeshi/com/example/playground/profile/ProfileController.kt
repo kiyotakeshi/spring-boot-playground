@@ -3,10 +3,12 @@ package kiyotakeshi.com.example.playground.profile
 import org.slf4j.LoggerFactory.getLogger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class HelloController {
+@RequestMapping("/profile")
+class ProfileController {
     @Value("\${message.hello}")
     private val hello: String? = null
 
@@ -17,7 +19,7 @@ class HelloController {
     private val port: String? = null
 
     companion object {
-        private val logger = getLogger(HelloController::class.java)
+        private val logger = getLogger(ProfileController::class.java)
     }
 
     @GetMapping("/hello")

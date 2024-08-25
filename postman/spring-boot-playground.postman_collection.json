@@ -146,149 +146,184 @@
 			]
 		},
 		{
-			"name": "localhost:{port}/hello",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:{{port}}/hello",
-					"host": [
-						"localhost"
-					],
-					"port": "{{port}}",
-					"path": [
-						"hello"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:{port}/logging",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:{{port}}/logging",
-					"host": [
-						"localhost"
-					],
-					"port": "{{port}}",
-					"path": [
-						"logging"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:{port}/json/logging",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
+			"name": "aop",
+			"item": [
+				{
+					"name": "localhost:{port}/aop",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/aop/mike",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"aop",
+								"mike"
+							]
+						}
 					},
-					{
-						"key": "X-Custom-Id",
-						"value": "{{$randomUUID}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:{{port}}/json/logging",
-					"host": [
-						"localhost"
-					],
-					"port": "{{port}}",
-					"path": [
-						"json",
-						"logging"
-					]
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "localhost:{port}/json/logging/exception",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:{{port}}/json/logging/exception",
-					"host": [
-						"localhost"
-					],
-					"port": "{{port}}",
-					"path": [
-						"json",
-						"logging",
-						"exception"
-					]
+			"name": "logging",
+			"item": [
+				{
+					"name": "localhost:{port}/logging",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/logging",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"logging"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/json/logging",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Custom-Id",
+								"value": "{{$randomUUID}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:{{port}}/json/logging",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"json",
+								"logging"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/json/logging/exception",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/json/logging/exception",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"json",
+								"logging",
+								"exception"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/inner/logging",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/inner/logging",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"inner",
+								"logging"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/inner/logging/exception",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/inner/logging/exception",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"inner",
+								"logging",
+								"exception"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:{port}/mdc/logging",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/mdc/logging",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"mdc",
+								"logging"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "localhost:{port}/inner/logging",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:{{port}}/inner/logging",
-					"host": [
-						"localhost"
-					],
-					"port": "{{port}}",
-					"path": [
-						"inner",
-						"logging"
-					]
+			"name": "profile",
+			"item": [
+				{
+					"name": "localhost:{port}/profile/hello",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/profile/hello",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"profile",
+								"hello"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:{port}/inner/logging/exception",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:{{port}}/inner/logging/exception",
-					"host": [
-						"localhost"
-					],
-					"port": "{{port}}",
-					"path": [
-						"inner",
-						"logging",
-						"exception"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:{port}/mdc/logging",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:{{port}}/mdc/logging",
-					"host": [
-						"localhost"
-					],
-					"port": "{{port}}",
-					"path": [
-						"mdc",
-						"logging"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [

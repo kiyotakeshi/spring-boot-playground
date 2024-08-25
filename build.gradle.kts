@@ -1,8 +1,8 @@
 plugins {
 	id("org.springframework.boot") version "3.3.2"
 	id("io.spring.dependency-management") version "1.1.6"
-	kotlin("jvm") version "1.9.24"
 	kotlin("plugin.spring") version "1.9.24"
+	kotlin("jvm") version "1.9.24"
 }
 
 group = "kiyotakeshi.com.example"
@@ -21,6 +21,7 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-aop")
 
 	implementation("net.logstash.logback:logstash-logback-encoder:8.0")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
