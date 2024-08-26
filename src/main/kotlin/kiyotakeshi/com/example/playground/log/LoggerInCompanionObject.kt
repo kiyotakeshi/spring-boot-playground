@@ -26,17 +26,20 @@ open class LoggerInCompanionObject {
         val loggerEnclosingClass = getLogger(javaClass.enclosingClass)
     }
 
-    object Inner {
-        val loggerWithExplicitClass = getLogger(Inner::class.java)
+    @Suppress("UtilityClassWithPublicConstructor")
+    class Inner {
+        companion object {
+            val loggerWithExplicitClass = getLogger(Inner::class.java)
 
-        @Suppress("JAVA_CLASS_ON_COMPANION")
-        @JvmStatic
-        val loggerWithWrongClass = getLogger(javaClass)
+            @Suppress("JAVA_CLASS_ON_COMPANION")
+            @JvmStatic
+            val loggerWithWrongClass = getLogger(javaClass)
 
-        // enclosingClass は外部クラスを取得するため LoggerInCompanionObject$Inner が取得される
-        @Suppress("JAVA_CLASS_ON_COMPANION")
-        @JvmStatic
-        val loggerEnclosingClass = getLogger(javaClass.enclosingClass)
+            // enclosingClass は外部クラスを取得するため LoggerInCompanionObject$Inner が取得される
+            @Suppress("JAVA_CLASS_ON_COMPANION")
+            @JvmStatic
+            val loggerEnclosingClass = getLogger(javaClass.enclosingClass)
+        }
     }
 }
 

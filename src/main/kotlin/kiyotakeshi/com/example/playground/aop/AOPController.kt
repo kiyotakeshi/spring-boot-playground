@@ -12,6 +12,11 @@ class AOPController(
 ) {
     @GetMapping("/{name}")
     fun index(@PathVariable name: String): String {
+        Thread.sleep(DELAY_SEC)
         return sample.sayHello(name)
+    }
+
+    companion object {
+        private const val DELAY_SEC = 1_000L
     }
 }

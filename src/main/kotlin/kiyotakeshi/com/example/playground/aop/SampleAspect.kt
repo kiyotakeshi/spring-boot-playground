@@ -57,6 +57,15 @@ class SampleAspect {
         return result
     }
 
+    @Around("execution(* kiyotakeshi.com.example.playground.aop.AOPController.*(..))")
+    @Throws(Throwable::class)
+    fun logExecutionTime(joinPoint: ProceedingJoinPoint): Any? {
+        val t = System.currentTimeMillis()
+        val result = joinPoint.proceed()
+        logger.info("Execution time=" + (System.currentTimeMillis() - t) + "ms")
+        return result
+    }
+
     companion object {
         var logger = LoggerFactory.getLogger(javaClass)
     }
