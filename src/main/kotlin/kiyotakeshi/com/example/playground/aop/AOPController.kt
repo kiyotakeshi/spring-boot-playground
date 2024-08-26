@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/aop")
 class AOPController(
-    private val sample: Sample
+    private val sample: Sample,
+    private val logMethodAnnotationSample: LogMethodAnnotationSample
 ) {
     @GetMapping("/{name}")
     fun index(@PathVariable name: String): String {
         Thread.sleep(DELAY_SEC)
         return sample.sayHello(name)
+    }
+
+    @GetMapping("/users/{name}")
+    fun user(@PathVariable name: String): String {
+        return logMethodAnnotationSample.findUser(name)
     }
 
     companion object {

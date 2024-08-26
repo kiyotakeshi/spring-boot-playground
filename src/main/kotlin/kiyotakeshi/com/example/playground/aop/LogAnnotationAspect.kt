@@ -4,6 +4,7 @@ import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.annotation.Aspect
 import org.aspectj.lang.annotation.Before
 import org.slf4j.LoggerFactory
+import org.slf4j.MDC
 import org.springframework.stereotype.Component
 
 @Aspect
@@ -14,8 +15,8 @@ class LogAnnotationAspect {
     fun beforeLogMethod(joinPoint: JoinPoint) {
         val path = "${joinPoint.signature.declaringTypeName}.${joinPoint.signature.name}"
         val body = joinPoint.args.contentToString()
-
-        logger.info("beforeLogMethod $path, $body")
+        MDC.put("path", path)
+        MDC.put("body", body)
     }
 
     @Before("within(@kiyotakeshi.com.example.playground.aop.LogComponent *)")

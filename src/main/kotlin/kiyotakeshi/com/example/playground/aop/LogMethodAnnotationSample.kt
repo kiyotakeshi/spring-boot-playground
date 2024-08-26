@@ -9,4 +9,9 @@ class LogMethodAnnotationSample {
     fun sayHello(name: String): String {
         return "hello $name"
     }
+
+    @LogMethod
+    fun findUser(name: String): String {
+        return "find user by $name"
+    }
 }

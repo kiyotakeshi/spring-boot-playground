@@ -13,7 +13,7 @@
   - [x] [Logging with AOP](https://www.baeldung.com/spring-aspect-oriented-programming-logging) 
   - [x] https://www.baeldung.com/spring-aop-test-aspect]
   - [x] [独自アノテーションを対象に AOP](https://tech.excite.co.jp/entry/2023/12/06/100456)
-  - [ ] AOP と MDC の組み合わせ
+  - [x] AOP と MDC の組み合わせ
   - [ ] ドキュメント通読
     - https://docs.spring.io/spring-framework/reference/core/aop.html
     - https://spring.pleiades.io/spring-framework/reference/core/aop.html

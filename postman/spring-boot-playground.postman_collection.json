@@ -166,6 +166,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "localhost:{port}/aop/user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port}}/aop/users/mike",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"aop",
+								"users",
+								"mike"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

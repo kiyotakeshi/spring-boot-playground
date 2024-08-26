@@ -53,6 +53,9 @@
         <logger name="kiyotakeshi.com.example.playground.log.json" level="trace" additivity="false">
             <appender-ref ref="JSON"/>
         </logger>
+        <logger name="kiyotakeshi.com.example.playground.aop" level="info" additivity="false">
+            <appender-ref ref="JSON"/>
+        </logger>
         <logger name="kiyotakeshi.com.example.playground.log.mdc" level="info" additivity="false">
             <appender-ref ref="STDOUT_WITH_MDC"/>
         </logger>
