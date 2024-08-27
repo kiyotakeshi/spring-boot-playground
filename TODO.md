@@ -24,9 +24,9 @@
 
 - [x] Spring for GraphQL 動作確認
   - [x] N+1 を起こして DataLoader(`@BatchMapping`) にて解消
-  - [ ] DataLoader そのものについて調べる
+  - [x] DataLoader そのものについて調べる
 
-- [ ] CGLib proxy について調べてみる
+- [x] CGLib proxy について調べてみる
 
 - [ ] Datadog との連携の確認
   - https://engineer-first.net/3nfno590njal
