@@ -22,7 +22,8 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-graphql")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-aop")
 
 	implementation("net.logstash.logback:logstash-logback-encoder:8.0")
@@ -31,6 +32,8 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.springframework:spring-webflux")
+    testImplementation("org.springframework.graphql:spring-graphql-test")
 	// testImplementation("org.assertj:assertj-core")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 

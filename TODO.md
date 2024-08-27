@@ -22,10 +22,25 @@
 
 - [x] detekt の導入
 
-- [ ] CGLib proxy について試してみる
-  - https://www.baeldung.com/cglib
-  - https://github.com/eugenp/tutorials/tree/master/libraries/src/test/java/com/baeldung/cglib/proxy
+- [x] Spring for GraphQL 動作確認
+  - [x] N+1 を起こして DataLoader(`@BatchMapping`) にて解消
+  - [ ] DataLoader そのものについて調べる
+
+- [ ] CGLib proxy について調べてみる
 
 - [ ] Datadog との連携の確認
+  - https://engineer-first.net/3nfno590njal
+  - https://docs.datadoghq.com/tracing/guide/tutorial-enable-java-host/?tab=maven
+  - https://docs.datadoghq.com/tracing/guide/tutorial-enable-java-containers/
+  - https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/java/?tab=wget
+  - https://delta-dev-software.fr/integrating-spring-boot-with-datadog-a-step-by-step-tutorial
+  - https://docs.spring.io/spring-boot/docs/3.2.8/reference/htmlsingle/ を datadog で検索
 
 - [ ] kotlin-result の導入
+
+- [ ] OpenTelemetry について調査
+
+- [ ] @Transactional の挙動について実験して理解する
+
+- [ ] ByteBuddy について試してみる
+    - https://www.baeldung.com/byte-buddy

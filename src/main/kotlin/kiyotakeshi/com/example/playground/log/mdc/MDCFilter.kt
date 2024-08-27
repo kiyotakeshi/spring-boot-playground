@@ -29,7 +29,6 @@ class MDCFilter : OncePerRequestFilter() {
         val responseWrapper = ContentCachingResponseWrapper(
             response
         )
-        filterChain.doFilter(request, responseWrapper)
         responseWrapper.setHeader("requestId", uniqueId.toString())
         responseWrapper.setHeader(customId, customIdValue ?: "")
         responseWrapper.copyBodyToResponse()

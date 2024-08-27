@@ -1,6 +1,9 @@
 spring:
   application:
     name: playground
+  graphql:
+    graphiql:
+      enabled: true
 
 server:
   port: 28080

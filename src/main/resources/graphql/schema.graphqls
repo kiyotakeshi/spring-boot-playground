@@ -1,0 +1,34 @@
+type Query {
+    customersNPlus1: [CustomerV1]!
+    customerNPlus1(id: ID!): CustomerV1
+
+    customers: [CustomerV2]!
+    customer(id: ID!): CustomerV2
+}
+
+"""
+N+1 を返すエンドポイントのために定義
+"""
+type CustomerV1 {
+    id: ID
+    name: String
+    age: Int
+    city: String
+    ordersNPlus1(limit: Int): [Order]!
+}
+
+"""
+DataLoader を使用し、N+1 問題を解決するエンドポイントのために定義
+"""
+type CustomerV2 {
+    id: ID
+    name: String
+    age: Int
+    city: String
+    orders(limit: Int): [Order]!
+}
+
+type Order {
+    id: ID!
+    description: String
+}

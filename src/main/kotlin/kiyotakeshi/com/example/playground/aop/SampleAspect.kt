@@ -20,9 +20,9 @@ import org.springframework.stereotype.Component
 @Component
 class SampleAspect {
 
-    @Pointcut("within(@org.springframework.stereotype.Service *)")
-    fun service() {
-    }
+//    @Pointcut("within(@org.springframework.stereotype.Service *)")
+//    fun service() {
+//    }
 
     @Pointcut("execution(* kiyotakeshi.com.example.playground.aop.Sample.find*(..)))")
     fun findMethod() {
@@ -32,10 +32,10 @@ class SampleAspect {
     fun aopPackage() {
     }
 
-    @Before("service()")
-    fun startLog(joinpoint: JoinPoint) {
-        logger.info("startLog ${joinpoint.signature.declaringTypeName}.${joinpoint.signature.name}")
-    }
+//    @Before("service()")
+//    fun startLog(joinpoint: JoinPoint) {
+//        logger.info("startLog ${joinpoint.signature.declaringTypeName}.${joinpoint.signature.name}")
+//    }
 
     @Before("findMethod()")
     fun findLog(joinpoint: JoinPoint) {
