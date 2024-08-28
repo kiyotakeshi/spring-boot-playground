@@ -31,4 +31,12 @@ type CustomerV2 {
 type Order {
     id: ID!
     description: String
+    detail: OrderDetail
+}
+
+type OrderDetail {
+    id: ID!
+    productCode: String
+    quantity: Int
+    price: Float
 }

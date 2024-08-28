@@ -20,6 +20,12 @@ query CustomersWithOrders {
         orders {
             id
             description
+            detail {
+                id
+                price
+                productCode
+                quantity
+            }
         }
     }
 }

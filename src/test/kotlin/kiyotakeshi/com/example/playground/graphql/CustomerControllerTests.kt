@@ -62,6 +62,7 @@ class CustomerControllerTests {
             )
     }
 
+    @Suppress("complexity")
     @Test
     fun `CustomersWithOrders`() {
         this.client.documentName("schema")
@@ -70,43 +71,61 @@ class CustomerControllerTests {
             .path("data.customers")
             .matchesJsonStrictly(
                 """
-            [
-                {
-                    "id": "1",
-                    "name": "mike",
-                    "age": 30,
-                    "city": "New York",
-                    "orders": [
-                        {
-                            "id": "1",
-                            "description": "beer"
-                        },
-                        {
-                            "id": "2",
-                            "description": "book"
-                        }
-                    ]
-                },
-                {
-                    "id": "2",
-                    "name": "john",
-                    "age": 25,
-                    "city": "San Francisco",
-                    "orders": [
-                        {
-                            "id": "3",
-                            "description": "computer"
-                        }
-                    ]
-                },
-                {
-                    "id": "3",
-                    "name": "kanye",
-                    "age": 40,
-                    "city": "Chicago",
-                    "orders": []
-                }
-            ]
+                [
+                    {
+                        "id": "1",
+                        "name": "mike",
+                        "age": 30,
+                        "city": "New York",
+                        "orders": [
+                            {
+                                "id": "1",
+                                "description": "beer",
+                                "detail": {
+                                    "id": "1",
+                                    "price": 100.0,
+                                    "productCode": "001",
+                                    "quantity": 1
+                                }
+                            },
+                            {
+                                "id": "2",
+                                "description": "book",
+                                "detail": {
+                                    "id": "2",
+                                    "price": 200.0,
+                                    "productCode": "002",
+                                    "quantity": 2
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "2",
+                        "name": "john",
+                        "age": 25,
+                        "city": "San Francisco",
+                        "orders": [
+                            {
+                                "id": "3",
+                                "description": "computer",
+                                "detail": {
+                                    "id": "3",
+                                    "price": 300.0,
+                                    "productCode": "003",
+                                    "quantity": 1
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "3",
+                        "name": "kanye",
+                        "age": 40,
+                        "city": "Chicago",
+                        "orders": []
+                    }
+                ]
                 """.trimIndent()
             )
     }

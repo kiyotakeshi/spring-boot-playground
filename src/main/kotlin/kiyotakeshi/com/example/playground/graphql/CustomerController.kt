@@ -57,6 +57,14 @@ class CustomerController(
         }
     }
 
+    @BatchMapping
+    fun detail(orders: List<Order>): Map<Order, OrderDetail?> {
+        logger.info("called detail")
+        return orders.associateWith { order ->
+            orderService.orderDetailByOrderId(order.id)
+        }
+    }
+
     companion object {
         private val logger = getLogger(javaClass)
     }
