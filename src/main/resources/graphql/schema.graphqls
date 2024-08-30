@@ -25,13 +25,13 @@ type CustomerV2 {
     name: String
     age: Int
     city: String
-    orders(limit: Int): [Order]!
+    orders: [Order]!
 }
 
 type Order {
     id: ID!
     description: String
-    detail: OrderDetail
+    detail(minPrice: Float = 0.0): OrderDetail
 }
 
 type OrderDetail {

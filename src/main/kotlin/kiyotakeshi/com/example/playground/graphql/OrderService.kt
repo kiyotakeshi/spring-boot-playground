@@ -16,6 +16,20 @@ class OrderService {
         return ORDER_DETAIL_MAP[orderId]
     }
 
+    fun orderDetailByOrderId(orderId: Long, minPrice: Float?): OrderDetail? {
+        logger.info("fetch order details by order id with minPrice: $orderId")
+        // minPrice が null または OrderDetail の価格が minPrice 以上である場合にのみ OrderDetail を返す
+        // 条件を満たさない場合 = minPrice が null ではなく、OrderDetail の価格が minPrice 未満の場合は null を返す
+        return ORDER_DETAIL_MAP[orderId]?.takeIf { minPrice == null || it.price >= minPrice }
+//        return ORDER_DETAIL_MAP[orderId]?.let { orderDetail ->
+//            if (minPrice == null || orderDetail.price >= minPrice) {
+//                orderDetail
+//            } else {
+//                null
+//            }
+//        }
+    }
+
     companion object {
         private val ORDER_MAP = mapOf(
             "mike" to listOf(Order(1, "beer"), Order(2, "book")),

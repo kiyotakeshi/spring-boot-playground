@@ -2,6 +2,10 @@
 
 - [x] N+1 を起こして DataLoader(`@BatchMapping`) にて解消 
 
+- [x] DataLoader そのものについて調べる
+
+- [x] DataLoader に `@Argument` を受け取る挙動を検証
+
 ---
 ## ドキュメントに目を通しておく
 

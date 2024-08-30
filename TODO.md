@@ -9,15 +9,6 @@
   - https://www.baeldung.com/kotlin/logging
   - https://tech.askul.co.jp/entry/2019/05/15/124859
 
-- [x] AOP
-  - [x] [Logging with AOP](https://www.baeldung.com/spring-aspect-oriented-programming-logging) 
-  - [x] https://www.baeldung.com/spring-aop-test-aspect]
-  - [x] [独自アノテーションを対象に AOP](https://tech.excite.co.jp/entry/2023/12/06/100456)
-  - [x] AOP と MDC の組み合わせ
-  - [ ] ドキュメント通読
-    - https://docs.spring.io/spring-framework/reference/core/aop.html
-    - https://spring.pleiades.io/spring-framework/reference/core/aop.html
-
 - [x] README の整理
 
 - [x] detekt の導入
@@ -25,6 +16,7 @@
 - [x] Spring for GraphQL 動作確認
   - [x] N+1 を起こして DataLoader(`@BatchMapping`) にて解消
   - [x] DataLoader そのものについて調べる
+  - [x] DataLoader に `@Argument` を受け取る挙動を検証
 
 - [x] CGLib proxy について調べてみる
 
@@ -44,3 +36,12 @@
 
 - [ ] ByteBuddy について試してみる
     - https://www.baeldung.com/byte-buddy
+
+- [x] AOP
+    - [x] [Logging with AOP](https://www.baeldung.com/spring-aspect-oriented-programming-logging)
+    - [x] https://www.baeldung.com/spring-aop-test-aspect]
+    - [x] [独自アノテーションを対象に AOP](https://tech.excite.co.jp/entry/2023/12/06/100456)
+    - [x] AOP と MDC の組み合わせ
+    - [ ] ドキュメント通読
+        - https://docs.spring.io/spring-framework/reference/core/aop.html
+        - https://spring.pleiades.io/spring-framework/reference/core/aop.html
