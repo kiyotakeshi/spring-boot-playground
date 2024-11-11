@@ -1,10 +1,17 @@
 package kiyotakeshi.com.example.playground.kotlinResult
 
+import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
 import com.github.michaelbull.result.andThen
 import com.github.michaelbull.result.flatMap
+import com.github.michaelbull.result.get
+import com.github.michaelbull.result.getError
+import com.github.michaelbull.result.map
 import com.github.michaelbull.result.mapBoth
+import com.github.michaelbull.result.mapError
 import com.github.michaelbull.result.onSuccess
+import com.github.michaelbull.result.orElse
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -82,7 +89,8 @@ class Playground {
         println(user) // Ok(User(id=2, name=user2, token=null, orders=[]))
 
         // token は null だが user と同じ変数の中身になる
-        // user.onSuccessの戻り値は Result 型であり、内部で login 関数を呼び出してもその結果は外部に返されない
+        // receiver をそのまま返すため = user.onSuccessの戻り値は Result 型であり、内部で login 関数を呼び出してもその結果は外部に返されない
+        // public inline infix fun <V, E> Result<V, E>.onSuccess(action: (V) -> Unit): Result<V, E> {
         val login: Result<User, Error> = user.onSuccess {
             // これは呼ばれる
             println("onSuccess: $it")
@@ -113,5 +121,42 @@ class Playground {
         assertThat(login.isOk).isFalse()
         assertThat(login.isErr).isTrue()
         assertThat(login.error).isEqualTo(Error)
+    }
+
+    /**
+     * https://blog.nnn.dev/entry/2023/06/22/110000#kotlin-result%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89
+     * にある基本的なメソッドの確認
+     */
+    @Test
+    fun `kotlin-result の基本的なメソッド確認`() {
+        val user: User? = getUser(1).get()
+        assertThat(user).isInstanceOf(User::class.java)
+
+        val userError = getUser(1).getError()
+        assertThat(userError).isNull()
+
+        val user1000 = getUser(1000).get()
+        assertThat(user1000).isNull()
+
+        val user1000Error = getUser(1000).getError()
+        assertThat(user1000Error).isInstanceOf(Error::class.java)
+
+        assertThat(getUser(1)
+            // 引数のラムダで変換する
+            .map { "success" }).isEqualTo(Ok("success"))
+
+        assertThat(getUser(1000).mapError { "error" }).isEqualTo(Err("error"))
+
+        val andThenOrElse: Result<String, String> = getUser(1000)
+            .andThen { Ok("success") }
+            .orElse { Err("error") }
+
+        assertThat(andThenOrElse).isEqualTo(Err("error"))
+
+        val flatMap: Result<String, String> = getUser(1000)
+            .flatMap { Ok("success") }
+            .orElse { Err("error") }
+
+        println(flatMap)
     }
 }
