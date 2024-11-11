@@ -46,15 +46,15 @@ open class LoggerInCompanionObject {
 class CompanionSubclass : LoggerInCompanionObject()
 
 // .info() などのメソッドは void のため UT ではなく main function で動作確認する
-fun main() {
-    // tier1()
-    // tier2()
-
-    // 23:06:36.371 [main] INFO kiyotakeshi.com.example.playground.log.LoggerInCompanionObject -- test
-    // 23:06:36.372 [main] INFO kiyotakeshi.com.example.playground.log.LoggerInCompanionObject$Companion -- test
-    // 23:06:36.372 [main] INFO kiyotakeshi.com.example.playground.log.LoggerInCompanionObject -- test
-    CompanionSubclass().log("test")
-}
+//fun main() {
+//    // tier1()
+//    // tier2()
+//
+//    // 23:06:36.371 [main] INFO kiyotakeshi.com.example.playground.log.LoggerInCompanionObject -- test
+//    // 23:06:36.372 [main] INFO kiyotakeshi.com.example.playground.log.LoggerInCompanionObject$Companion -- test
+//    // 23:06:36.372 [main] INFO kiyotakeshi.com.example.playground.log.LoggerInCompanionObject -- test
+//    CompanionSubclass().log("test")
+//}
 
 @Suppress("UnusedPrivateMember")
 private fun tier1() {

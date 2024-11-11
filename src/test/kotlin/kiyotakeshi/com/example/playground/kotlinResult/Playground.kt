@@ -141,9 +141,11 @@ class Playground {
         val user1000Error = getUser(1000).getError()
         assertThat(user1000Error).isInstanceOf(Error::class.java)
 
-        assertThat(getUser(1)
-            // 引数のラムダで変換する
-            .map { "success" }).isEqualTo(Ok("success"))
+        assertThat(
+            getUser(1)
+                // 引数のラムダで変換する
+                .map { "success" }
+        ).isEqualTo(Ok("success"))
 
         assertThat(getUser(1000).mapError { "error" }).isEqualTo(Err("error"))
 

@@ -41,4 +41,5 @@ out/
 
 ### other ###
 /tests*.log
-
+/postgres
+!/postgres/initdb.d

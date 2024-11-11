@@ -8,7 +8,7 @@ import org.springframework.graphql.test.tester.HttpGraphQlTester
 
 @SpringBootTest
 @AutoConfigureHttpGraphQlTester
-class CustomerControllerTests {
+class CustomerRestControllerTests {
 
     @Autowired
     private lateinit var client: HttpGraphQlTester

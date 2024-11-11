@@ -23,15 +23,15 @@ open class LoggerAsExtensionOnMarkerInterface : Logging {
 
 class MarkerExtensionSubclass : LoggerAsExtensionOnMarkerInterface()
 
-fun main() {
-    // 00:22:45.781 [main] INFO kiyotakeshi.com.example.playground.log.LoggerAsExtensionOnMarkerInterface Logging/interface -- test
-    // 00:22:45.782 [main] INFO kiyotakeshi.com.example.playground.log.LoggerAsExtensionOnMarkerInterface Logging/interface -- test
-    LoggerAsExtensionOnMarkerInterface().log("test")
-
-    // 00:22:45.782 [main] INFO kiyotakeshi.com.example.playground.log.MarkerExtensionSubclass Logging/interface -- sub
-    // 00:22:45.782 [main] INFO kiyotakeshi.com.example.playground.log.LoggerAsExtensionOnMarkerInterface Logging/interface -- sub
-    MarkerExtensionSubclass().log("sub")
-
-    // 00:25:06.687 [main] INFO java.lang.String -- Any type pollution
-    "foo".logger().info("Any type pollution")
-}
+//fun main() {
+//    // 00:22:45.781 [main] INFO kiyotakeshi.com.example.playground.log.LoggerAsExtensionOnMarkerInterface Logging/interface -- test
+//    // 00:22:45.782 [main] INFO kiyotakeshi.com.example.playground.log.LoggerAsExtensionOnMarkerInterface Logging/interface -- test
+//    LoggerAsExtensionOnMarkerInterface().log("test")
+//
+//    // 00:22:45.782 [main] INFO kiyotakeshi.com.example.playground.log.MarkerExtensionSubclass Logging/interface -- sub
+//    // 00:22:45.782 [main] INFO kiyotakeshi.com.example.playground.log.LoggerAsExtensionOnMarkerInterface Logging/interface -- sub
+//    MarkerExtensionSubclass().log("sub")
+//
+//    // 00:25:06.687 [main] INFO java.lang.String -- Any type pollution
+//    "foo".logger().info("Any type pollution")
+//}

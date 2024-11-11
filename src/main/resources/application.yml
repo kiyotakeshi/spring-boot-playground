@@ -4,9 +4,18 @@ spring:
   graphql:
     graphiql:
       enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:35432/mydatabase
+    username: myuser
+    password: secret
 
 server:
   port: 28080
+  error:
+    # デフォルトのエラーレスポンスに stacktrace を含めない
+    # https://docs.spring.io/spring-boot/reference/using/devtools.html#using.devtools.property-defaults の `server.error.include-stacktrace`
+    #    include-stacktrace: never
+    include-stacktrace: always
 
 # https://docs.spring.io/spring-boot/reference/actuator/endpoints.html
 # https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.exposing
