@@ -29,8 +29,9 @@ dependencies {
 	implementation("net.logstash.logback:logstash-logback-encoder:8.0")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("com.michael-bull.kotlin-result:kotlin-result:2.0.0")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.springframework:spring-webflux")
     testImplementation("org.springframework.graphql:spring-graphql-test")
