@@ -50,6 +50,13 @@
         <logger name="kiyotakeshi.com.example.playground.log.inner" level="trace" additivity="false">
             <appender-ref ref="STDOUT"/>
         </logger>
+<!-- transaction 周りの実験をする時 -->
+<!--        <logger name="org.springframework.jdbc" level="trace" additivity="false">-->
+<!--            <appender-ref ref="STDOUT"/>-->
+<!--        </logger>-->
+<!--        <logger name="org.postgresql" level="trace" additivity="false">-->
+<!--            <appender-ref ref="STDOUT"/>-->
+<!--        </logger>-->
         <logger name="kiyotakeshi.com.example.playground.log.json" level="trace" additivity="false">
             <appender-ref ref="JSON"/>
         </logger>
