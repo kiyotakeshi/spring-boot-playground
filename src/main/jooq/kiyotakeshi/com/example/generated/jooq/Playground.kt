@@ -5,6 +5,8 @@ package kiyotakeshi.com.example.generated.jooq
 
 
 import kiyotakeshi.com.example.generated.jooq.tables.Customer
+import kiyotakeshi.com.example.generated.jooq.tables.Order
+import kiyotakeshi.com.example.generated.jooq.tables.OrderDetail
 
 import kotlin.collections.List
 
@@ -31,9 +33,21 @@ open class Playground : SchemaImpl("playground", DefaultCatalog.DEFAULT_CATALOG)
      */
     val CUSTOMER: Customer get() = Customer.CUSTOMER
 
+    /**
+     * The table <code>playground.order</code>.
+     */
+    val ORDER: Order get() = Order.ORDER
+
+    /**
+     * The table <code>playground.order_detail</code>.
+     */
+    val ORDER_DETAIL: OrderDetail get() = OrderDetail.ORDER_DETAIL
+
     override fun getCatalog(): Catalog = DefaultCatalog.DEFAULT_CATALOG
 
     override fun getTables(): List<Table<*>> = listOf(
-        Customer.CUSTOMER
+        Customer.CUSTOMER,
+        Order.ORDER,
+        OrderDetail.ORDER_DETAIL
     )
 }
