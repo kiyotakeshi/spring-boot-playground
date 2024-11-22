@@ -20,6 +20,14 @@
 
 - [x] CGLib proxy について調べてみる
 
+- [ ] kotlin-result の導入
+    - [x] ミニマムに動かして試す
+    - [] REST API との兼ね合い確認
+
+- [x] GraphQL の実装も DB を使ったちゃんとしたものにする
+
+- [ ] イベント駆動の様々な実装方法の整理
+
 - [ ] Datadog との連携の確認
   - https://engineer-first.net/3nfno590njal
   - https://docs.datadoghq.com/tracing/guide/tutorial-enable-java-host/?tab=maven
@@ -28,11 +36,10 @@
   - https://delta-dev-software.fr/integrating-spring-boot-with-datadog-a-step-by-step-tutorial
   - https://docs.spring.io/spring-boot/docs/3.2.8/reference/htmlsingle/ を datadog で検索
 
-- [ ] kotlin-result の導入
-
 - [ ] OpenTelemetry について調査
 
-- [ ] @Transactional の挙動について実験して理解する
+- [x] @Transactional の挙動について実験して理解する
+  - [ ] ドキュメントを読んだ理内部実装を掘り下げて理解する
 
 - [ ] ByteBuddy について試してみる
     - https://www.baeldung.com/byte-buddy

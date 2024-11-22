@@ -5,18 +5,19 @@ package kiyotakeshi.com.example.generated.jooq.tables
 
 
 import kiyotakeshi.com.example.generated.jooq.Playground
-import kiyotakeshi.com.example.generated.jooq.keys.CUSTOMER_EMAIL_KEY
 import kiyotakeshi.com.example.generated.jooq.keys.CUSTOMER_PKEY
+import kiyotakeshi.com.example.generated.jooq.keys.ORDER__ORDER_CUSTOMER_ID_FKEY
+import kiyotakeshi.com.example.generated.jooq.tables.Order.OrderPath
 import kiyotakeshi.com.example.generated.jooq.tables.records.CustomerRecord
 
 import kotlin.collections.Collection
-import kotlin.collections.List
 
 import org.jooq.Condition
 import org.jooq.Field
 import org.jooq.ForeignKey
 import org.jooq.InverseForeignKey
 import org.jooq.Name
+import org.jooq.Path
 import org.jooq.PlainSQL
 import org.jooq.QueryPart
 import org.jooq.Record
@@ -29,6 +30,7 @@ import org.jooq.TableField
 import org.jooq.TableOptions
 import org.jooq.UniqueKey
 import org.jooq.impl.DSL
+import org.jooq.impl.Internal
 import org.jooq.impl.SQLDataType
 import org.jooq.impl.TableImpl
 
@@ -76,19 +78,19 @@ open class Customer(
     val CUSTOMER_ID: TableField<CustomerRecord, Long?> = createField(DSL.name("customer_id"), SQLDataType.BIGINT.nullable(false), this, "")
 
     /**
-     * The column <code>playground.customer.first_name</code>.
+     * The column <code>playground.customer.name</code>.
      */
-    val FIRST_NAME: TableField<CustomerRecord, String?> = createField(DSL.name("first_name"), SQLDataType.VARCHAR(255).nullable(false), this, "")
+    val NAME: TableField<CustomerRecord, String?> = createField(DSL.name("name"), SQLDataType.VARCHAR(255).nullable(false), this, "")
 
     /**
-     * The column <code>playground.customer.last_name</code>.
+     * The column <code>playground.customer.age</code>.
      */
-    val LAST_NAME: TableField<CustomerRecord, String?> = createField(DSL.name("last_name"), SQLDataType.VARCHAR(255).nullable(false), this, "")
+    val AGE: TableField<CustomerRecord, Int?> = createField(DSL.name("age"), SQLDataType.INTEGER.nullable(false), this, "")
 
     /**
-     * The column <code>playground.customer.email</code>.
+     * The column <code>playground.customer.city</code>.
      */
-    val EMAIL: TableField<CustomerRecord, String?> = createField(DSL.name("email"), SQLDataType.VARCHAR(255).nullable(false), this, "")
+    val CITY: TableField<CustomerRecord, String?> = createField(DSL.name("city"), SQLDataType.VARCHAR(255).nullable(false), this, "")
 
     private constructor(alias: Name, aliased: Table<CustomerRecord>?): this(alias, null, null, null, aliased, null, null)
     private constructor(alias: Name, aliased: Table<CustomerRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, null, aliased, parameters, null)
@@ -108,9 +110,37 @@ open class Customer(
      * Create a <code>playground.customer</code> table reference
      */
     constructor(): this(DSL.name("customer"), null)
+
+    constructor(path: Table<out Record>, childPath: ForeignKey<out Record, CustomerRecord>?, parentPath: InverseForeignKey<out Record, CustomerRecord>?): this(Internal.createPathAlias(path, childPath, parentPath), path, childPath, parentPath, CUSTOMER, null, null)
+
+    /**
+     * A subtype implementing {@link Path} for simplified path-based joins.
+     */
+    open class CustomerPath : Customer, Path<CustomerRecord> {
+        constructor(path: Table<out Record>, childPath: ForeignKey<out Record, CustomerRecord>?, parentPath: InverseForeignKey<out Record, CustomerRecord>?): super(path, childPath, parentPath)
+        private constructor(alias: Name, aliased: Table<CustomerRecord>): super(alias, aliased)
+        override fun `as`(alias: String): CustomerPath = CustomerPath(DSL.name(alias), this)
+        override fun `as`(alias: Name): CustomerPath = CustomerPath(alias, this)
+        override fun `as`(alias: Table<*>): CustomerPath = CustomerPath(alias.qualifiedName, this)
+    }
     override fun getSchema(): Schema? = if (aliased()) null else Playground.PLAYGROUND
     override fun getPrimaryKey(): UniqueKey<CustomerRecord> = CUSTOMER_PKEY
-    override fun getUniqueKeys(): List<UniqueKey<CustomerRecord>> = listOf(CUSTOMER_EMAIL_KEY)
+
+    private lateinit var _order: OrderPath
+
+    /**
+     * Get the implicit to-many join path to the <code>playground.order</code>
+     * table
+     */
+    fun order(): OrderPath {
+        if (!this::_order.isInitialized)
+            _order = OrderPath(this, null, ORDER__ORDER_CUSTOMER_ID_FKEY.inverseKey)
+
+        return _order;
+    }
+
+    val order: OrderPath
+        get(): OrderPath = order()
     override fun `as`(alias: String): Customer = Customer(DSL.name(alias), this)
     override fun `as`(alias: Name): Customer = Customer(alias, this)
     override fun `as`(alias: Table<*>): Customer = Customer(alias.qualifiedName, this)

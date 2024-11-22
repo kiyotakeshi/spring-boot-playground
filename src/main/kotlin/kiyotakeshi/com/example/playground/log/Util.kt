@@ -21,7 +21,7 @@ fun getLogger(forClass: Class<*>): Logger = LoggerFactory.getLogger(forClass)
 // Pollution of the Any Type になってしまう
 fun <T : Any> T.logger(): Logger = getLogger(getClassForLogging(javaClass))
 
-//fun main() {
+// fun main() {
 //    // javaClass.enclosingClass が null なので、そのまま引数の javaClass が返される
 //    val regularClass = getClassForLogging(String::class.java)
 //    // Regular class: java.lang.String
@@ -57,4 +57,4 @@ fun <T : Any> T.logger(): Logger = getLogger(getClassForLogging(javaClass))
 //    val innerClassCompanionClass = getClassForLogging(LoggerInCompanionObject.Inner.Companion::class.java)
 //    // Inner class companion object class: kiyotakeshi.com.example.playground.log.LoggerInCompanionObject$Inner
 //    println("Inner class companion object class: ${innerClassCompanionClass.name}")
-//}
+// }

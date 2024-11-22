@@ -1,22 +1,22 @@
 package kiyotakeshi.com.example.playground.graphql
 
+import kiyotakeshi.com.example.playground.shared.Customer
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 
 @Service
-class CustomerService {
+class CustomerService(
+    @Qualifier("graphqlCustomerRepository")
+    private val customerRepository: CustomerRepository
+) {
 
     @Suppress("MagicNumber")
-    fun allCustomers() = listOf(
-        Customer(1, "mike", 30, "New York"),
-        Customer(2, "john", 25, "San Francisco"),
-        Customer(3, "kanye", 40, "Chicago"),
-    )
-}
+    fun allCustomers(): List<Customer> {
+        return customerRepository.findAll()
+    }
 
-data class Customer(
-    val id: Long,
-    val name: String,
-    val age: Int,
-    val city: String,
-    val orders: List<Order> = emptyList()
-)
+    @Suppress("MagicNumber")
+    fun customer(id: Long): Customer? {
+        return customerRepository.findById(id)
+    }
+}

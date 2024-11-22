@@ -5,8 +5,13 @@ package kiyotakeshi.com.example.generated.jooq.keys
 
 
 import kiyotakeshi.com.example.generated.jooq.tables.Customer
+import kiyotakeshi.com.example.generated.jooq.tables.Order
+import kiyotakeshi.com.example.generated.jooq.tables.OrderDetail
 import kiyotakeshi.com.example.generated.jooq.tables.records.CustomerRecord
+import kiyotakeshi.com.example.generated.jooq.tables.records.OrderDetailRecord
+import kiyotakeshi.com.example.generated.jooq.tables.records.OrderRecord
 
+import org.jooq.ForeignKey
 import org.jooq.UniqueKey
 import org.jooq.impl.DSL
 import org.jooq.impl.Internal
@@ -17,5 +22,12 @@ import org.jooq.impl.Internal
 // UNIQUE and PRIMARY KEY definitions
 // -------------------------------------------------------------------------
 
-val CUSTOMER_EMAIL_KEY: UniqueKey<CustomerRecord> = Internal.createUniqueKey(Customer.CUSTOMER, DSL.name("customer_email_key"), arrayOf(Customer.CUSTOMER.EMAIL), true)
 val CUSTOMER_PKEY: UniqueKey<CustomerRecord> = Internal.createUniqueKey(Customer.CUSTOMER, DSL.name("customer_pkey"), arrayOf(Customer.CUSTOMER.CUSTOMER_ID), true)
+val ORDER_PKEY: UniqueKey<OrderRecord> = Internal.createUniqueKey(Order.ORDER, DSL.name("order_pkey"), arrayOf(Order.ORDER.ORDER_ID), true)
+
+// -------------------------------------------------------------------------
+// FOREIGN KEY definitions
+// -------------------------------------------------------------------------
+
+val ORDER__ORDER_CUSTOMER_ID_FKEY: ForeignKey<OrderRecord, CustomerRecord> = Internal.createForeignKey(Order.ORDER, DSL.name("order_customer_id_fkey"), arrayOf(Order.ORDER.CUSTOMER_ID), kiyotakeshi.com.example.generated.jooq.keys.CUSTOMER_PKEY, arrayOf(Customer.CUSTOMER.CUSTOMER_ID), true)
+val ORDER_DETAIL__ORDER_DETAIL_ORDER_ID_FKEY: ForeignKey<OrderDetailRecord, OrderRecord> = Internal.createForeignKey(OrderDetail.ORDER_DETAIL, DSL.name("order_detail_order_id_fkey"), arrayOf(OrderDetail.ORDER_DETAIL.ORDER_ID), kiyotakeshi.com.example.generated.jooq.keys.ORDER_PKEY, arrayOf(Order.ORDER.ORDER_ID), true)

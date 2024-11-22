@@ -1,6 +1,11 @@
 package kiyotakeshi.com.example.playground.rest
 
+import com.github.michaelbull.result.getOrThrow
 import jakarta.validation.Valid
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Size
+import kiyotakeshi.com.example.playground.shared.Customer
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -23,9 +28,16 @@ class CustomerRestController(
         return customerUsecase.getCustomers()
     }
 
+
     @GetMapping("/{id}")
-    fun getCustomer(@PathVariable id: String): Customer? {
-        return customerUsecase.getCustomerById(id)
+    fun getCustomer(@PathVariable id: String): ResponseEntity<Customer> {
+        val customer = customerUsecase.getCustomerById(id).getOrThrow()
+        return ResponseEntity.ok(customer)
+    }
+
+    @GetMapping("/v2/{id}")
+    fun getCustomerV2(@PathVariable id: String): Customer {
+        return customerUsecase.getCustomerById2(id)
     }
 
     @PostMapping
@@ -53,7 +65,12 @@ class CustomerRestController(
 }
 
 data class CustomerAddRequestDto(
-    val firstName: String,
-    val lastName: String,
-    val email: String,
+    @get:Size(min = 1, max = 30)
+    val name: String,
+
+    @get:NotNull
+    val age: Int,
+
+    @get:Size(min = 1, max = 255)
+    val city: String,
 )

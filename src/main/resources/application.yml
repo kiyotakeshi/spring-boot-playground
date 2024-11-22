@@ -19,17 +19,18 @@ server:
 
 # https://docs.spring.io/spring-boot/reference/actuator/endpoints.html
 # https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.exposing
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,env,metrics,loggers,beans
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,info,env,metrics,loggers,beans
 # https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.log-levels
 #logging.level.kiyotakeshi.com.example.playground.profile: debug
 #logging.level.kiyotakeshi.com.example.playground.log: debug
 #logging.level.kiyotakeshi.com.example.playground.log.inner: trace
 # https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.log-groups
 #logging.level.web: debug
+logging.level.sql: debug
 
 # https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.file-output
 #logging.file.name: tests.log
